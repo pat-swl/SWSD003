@@ -422,7 +422,6 @@ void apps_common_print_sdk_driver_version( void )
 {
     common_version_print( );
     print_driver_version( );
-    HAL_DBG_TRACE_INFO( "\n" );
 }
 
 void apps_common_lr11xx_radio_init( const void* context )
@@ -628,15 +627,15 @@ void apps_common_lr11xx_irq_process( const void* context, lr11xx_system_irq_mask
         lr11xx_system_irq_mask_t irq_regs;
         lr11xx_system_get_and_clear_irq_status( context, &irq_regs );
 
-        HAL_DBG_TRACE_INFO( "Interrupt flags = 0x%08X\n", irq_regs );
+        //HAL_DBG_TRACE_INFO( "Interrupt flags = 0x%08X\n", irq_regs );
 
         irq_regs &= irq_filter_mask;
 
-        HAL_DBG_TRACE_INFO( "Interrupt flags (after filtering) = 0x%08X\n", irq_regs );
+        //HAL_DBG_TRACE_INFO( "Interrupt flags (after filtering) = 0x%08X\n", irq_regs );
 
         if( ( irq_regs & LR11XX_SYSTEM_IRQ_TX_DONE ) == LR11XX_SYSTEM_IRQ_TX_DONE )
         {
-            HAL_DBG_TRACE_INFO( "Tx done\n" );
+            //HAL_DBG_TRACE_INFO( "Tx done\n" );
             on_tx_done( );
         }
 
@@ -746,7 +745,7 @@ void apps_common_lr11xx_irq_process( const void* context, lr11xx_system_irq_mask
             on_gnss_scan_done( );
         }
 
-        HAL_DBG_TRACE_PRINTF( "\n" );
+        //HAL_DBG_TRACE_PRINTF( "\n" );
     }
 }
 
@@ -856,7 +855,6 @@ void print_common_configuration( void )
     HAL_DBG_TRACE_INFO( "   Output power  = %i dBm\n", TX_OUTPUT_POWER_DBM );
     HAL_DBG_TRACE_INFO( "   Fallback mode = %s\n", lr11xx_radio_fallback_modes_to_str( FALLBACK_MODE ) );
     HAL_DBG_TRACE_INFO( ( ENABLE_RX_BOOST_MODE == true ) ? "   Rx boost activated\n" : "   Rx boost deactivated\n" );
-    HAL_DBG_TRACE_PRINTF( "\n" );
 }
 
 void print_lora_configuration( void )
@@ -865,7 +863,6 @@ void print_lora_configuration( void )
     HAL_DBG_TRACE_INFO( "   Spreading factor = %s\n", lr11xx_radio_lora_sf_to_str( LORA_SPREADING_FACTOR ) );
     HAL_DBG_TRACE_INFO( "   Bandwidth        = %s\n", lr11xx_radio_lora_bw_to_str( LORA_BANDWIDTH ) );
     HAL_DBG_TRACE_INFO( "   Coding rate      = %s\n", lr11xx_radio_lora_cr_to_str( LORA_CODING_RATE ) );
-    HAL_DBG_TRACE_PRINTF( "\n" );
 
     HAL_DBG_TRACE_INFO( "LoRa packet parameters:\n" );
     HAL_DBG_TRACE_INFO( "   Preamble length = %d symbol(s)\n", LORA_PREAMBLE_LENGTH );
@@ -873,10 +870,8 @@ void print_lora_configuration( void )
     HAL_DBG_TRACE_INFO( "   Payload length  = %d byte(s)\n", PAYLOAD_LENGTH );
     HAL_DBG_TRACE_INFO( "   CRC mode        = %s\n", lr11xx_radio_lora_crc_to_str( LORA_CRC ) );
     HAL_DBG_TRACE_INFO( "   IQ              = %s\n", lr11xx_radio_lora_iq_to_str( LORA_IQ ) );
-    HAL_DBG_TRACE_PRINTF( "\n" );
 
     HAL_DBG_TRACE_INFO( "LoRa syncword = 0x%02X\n", LORA_SYNCWORD );
-    HAL_DBG_TRACE_PRINTF( "\n" );
 }
 
 void print_gfsk_configuration( void )
@@ -886,7 +881,6 @@ void print_gfsk_configuration( void )
     HAL_DBG_TRACE_INFO( "   Pulse shape         = %s\n", lr11xx_radio_gfsk_pulse_shape_to_str( FSK_PULSE_SHAPE ) );
     HAL_DBG_TRACE_INFO( "   Bandwidth           = %s\n", lr11xx_radio_gfsk_bw_to_str( FSK_BANDWIDTH ) );
     HAL_DBG_TRACE_INFO( "   Frequency deviation = %u Hz\n", FSK_FDEV );
-    HAL_DBG_TRACE_PRINTF( "\n" );
 
     HAL_DBG_TRACE_INFO( "GFSK packet parameters:\n" );
     HAL_DBG_TRACE_INFO( "   Preamble length   = %d bit(s)\n", FSK_PREAMBLE_LENGTH );
@@ -916,7 +910,6 @@ void print_gfsk_configuration( void )
     {
         HAL_DBG_TRACE_INFO( "     (Whitening seed = 0x%04X)\n", FSK_WHITENING_SEED );
     }
-    HAL_DBG_TRACE_PRINTF( "\n" );
 }
 
 void print_driver_version( void )
