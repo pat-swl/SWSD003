@@ -72,6 +72,7 @@ C_DEFS =
 include $(PROJECTS_COMMON_MAKEFILE)
 
 CFLAGS += -I$(TOP_DIR)/sx126x/sx126x_driver/src
+CFLAGS += -I$(TOP_DIR)/libs/third_party/stm32l4xx-hal-driver/inc
 
 #######################################
 # build the application
